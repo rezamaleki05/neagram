@@ -1,6 +1,11 @@
+"use client";
+
 import Button from "@/components/ui/Button";
+import { useFormState } from "react-dom";
+import { submitForm } from "./actions";
 
 export default function Contact() {
+  const [state, formAction] = useFormState(submitForm, null);
   return (
     <div className="container section" style={{ paddingTop: "120px" }}>
       <div className="request-content" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }}>
@@ -10,7 +15,7 @@ export default function Contact() {
           <p style={{ color: "rgba(245, 245, 247, 0.7)", fontSize: "1.125rem", lineHeight: "1.6" }}>Select a service, share your vision, and our team will follow up with a tailored strategy.</p>
         </div>
 
-        <form id="serviceRequestForm" className="request-form" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+        <form action={formAction} id="serviceRequestForm" className="request-form" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           <label style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
             Service
             <select id="serviceSelect" required style={{ padding: "1rem", background: "rgba(255, 255, 255, 0.05)", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "8px", color: "white", outline: "none", appearance: "none" }}>
@@ -54,7 +59,11 @@ export default function Contact() {
           <Button type="submit" variant="primary" showIcon className="w-full">
             Submit Request
           </Button>
-          <p id="requestMessage" className="request-message" style={{ marginTop: "1rem", color: "var(--color-lilac)", fontSize: "0.875rem" }}></p>
+          {state?.message && (
+            <p id="requestMessage" className="request-message" style={{ marginTop: "1rem", color: state.success ? "var(--color-lilac)" : "red", fontSize: "0.875rem" }}>
+              {state.message}
+            </p>
+          )}
         </form>
       </div>
     </div>
