@@ -1,0 +1,131 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.headerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  width: auto;
+  height: 45px; /* Matches the Book a Discovery Call button height */
+  object-fit: contain;
+}
+
+.nav {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.navLink {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(245, 245, 247, 0.7);
+  transition: color var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navIcon {
+  width: 1rem;
+  height: 1rem;
+  stroke-width: 1.5;
+}
+
+.navLink:hover {
+  color: var(--color-off-white);
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background-color: rgba(255, 255, 255, 0.96);
+  color: var(--color-soft-black);
+  font-weight: 500;
+  font-size: 0.875rem;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.ctaButton:hover {
+  background-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+}
+
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdownIcon {
+  width: 0.75rem;
+  height: 0.75rem;
+  stroke-width: 2;
+  margin-left: 0.25rem;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0;
+  min-width: 200px;
+  z-index: 200;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: rgba(245, 245, 247, 0.8);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.dropdownItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-off-white);
+}
+
+.dropdownItem .dropdownIcon {
+  width: 1rem;
+  height: 1rem;
+  stroke-width: 1.5;
+  margin: 0;
+}
