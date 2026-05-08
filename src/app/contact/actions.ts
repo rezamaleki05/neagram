@@ -11,7 +11,7 @@ export async function submitForm(prevState: { success?: boolean; message?: strin
 
   try {
     const botToken = process.env.TELEGRAM_BOT_TOKEN || "8648047856:AAHbWZ_PMCfd-LQH1oc4Np0QMOBM8D_ar50";
-    const chatId = process.env.TELEGRAM_CHAT_ID || "5806909469";
+    const chatId = process.env.TELEGRAM_CHAT_ID || "-5238276126";
     
     const message = `
 🌟 <b>New Service Request</b>
