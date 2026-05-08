@@ -1,11 +1,11 @@
 "use client";
 
 import Button from "@/components/ui/Button";
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 import { submitForm } from "./actions";
 
 export default function ContactForm() {
-  const [state, formAction] = useFormState(submitForm, null);
+  const [state, formAction] = useActionState(submitForm, null);
 
   return (
     <form action={formAction} id="serviceRequestForm" className="request-form" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
@@ -16,6 +16,8 @@ export default function ContactForm() {
           <option value="Photography" style={{ color: "black" }}>Photography</option>
           <option value="Website Design" style={{ color: "black" }}>Website Design</option>
           <option value="Meta Ads" style={{ color: "black" }}>Meta Ads</option>
+          <option value="AI Services" style={{ color: "black" }}>AI Services</option>
+          <option value="Multiple Services" style={{ color: "black" }}>Multiple Services</option>
         </select>
       </label>
 

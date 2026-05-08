@@ -22,7 +22,7 @@ export default function Footer() {
             </div>
             <div className={styles.linksColumn}>
               <h4 className={styles.columnTitle}>Get in touch</h4>
-              <a href="https://wa.me/971501234567" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/971527556964" target="_blank" rel="noopener noreferrer">
                 <PhoneIcon className={styles.icon} />
                 WhatsApp
               </a>
