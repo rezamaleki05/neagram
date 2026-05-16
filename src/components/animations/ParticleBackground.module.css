@@ -1,0 +1,71 @@
+.wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Animated gradient blobs */
+.blob1,
+.blob2,
+.blob3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.12;
+}
+
+.blob1 {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, #7B2CFF 0%, transparent 70%);
+  top: -10%;
+  right: -5%;
+  animation: blobFloat1 25s ease-in-out infinite;
+}
+
+.blob2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #A970FF 0%, transparent 70%);
+  bottom: 10%;
+  left: -8%;
+  animation: blobFloat2 30s ease-in-out infinite;
+}
+
+.blob3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #5a1aad 0%, transparent 70%);
+  top: 50%;
+  left: 40%;
+  animation: blobFloat3 20s ease-in-out infinite;
+}
+
+@keyframes blobFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-60px, 40px) scale(1.1); }
+  50% { transform: translate(-30px, 80px) scale(0.95); }
+  75% { transform: translate(40px, 30px) scale(1.05); }
+}
+
+@keyframes blobFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(50px, -30px) scale(1.05); }
+  50% { transform: translate(80px, -60px) scale(1.12); }
+  75% { transform: translate(30px, -20px) scale(0.95); }
+}
+
+@keyframes blobFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-40px, -50px) scale(1.08); }
+  66% { transform: translate(30px, 40px) scale(0.92); }
+}

@@ -4,10 +4,18 @@
   left: 0;
   width: 100%;
   z-index: 100;
-  background: rgba(10, 10, 10, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(3, 3, 10, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.header:hover {
+  background: rgba(3, 3, 10, 0.98);
+  border-bottom: 1px solid rgba(123, 44, 255, 0.15);
+  box-shadow: 0 10px 40px rgba(123, 44, 255, 0.08);
 }
 
 .headerInner {
@@ -24,7 +32,7 @@
 
 .logoImage {
   width: auto;
-  height: 45px; /* Matches the Book a Discovery Call button height */
+  height: 45px;
   object-fit: contain;
 }
 
@@ -34,42 +42,68 @@
 }
 
 .navLink {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: rgba(245, 245, 247, 0.7);
-  transition: color var(--transition-fast);
+  letter-spacing: 0.08em;
+  color: rgba(245, 245, 247, 0.6);
+  transition: all var(--transition-fast);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-}
-
-.navIcon {
-  width: 1rem;
-  height: 1rem;
-  stroke-width: 1.5;
+  gap: 0.25rem;
+  font-weight: 500;
+  position: relative;
+  padding: 0.5rem 0;
 }
 
 .navLink:hover {
-  color: var(--color-off-white);
+  color: var(--text-white);
 }
+
+.navLink.active {
+  color: #9d4edd;
+}
+
+.navLink.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #9d4edd;
+  box-shadow: 0 0 10px #9d4edd, 0 0 20px #9d4edd;
+  border-radius: 2px;
+}
+
 
 .ctaButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.5rem;
-  background-color: rgba(255, 255, 255, 0.96);
-  color: var(--color-soft-black);
+  padding: 0.65rem 1.5rem;
+  background: transparent;
+  color: #fff;
   font-weight: 500;
-  font-size: 0.875rem;
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  border-radius: 9999px;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  border: 1px solid #7B2CFF;
+  box-shadow: 0 0 15px rgba(123, 44, 255, 0.1);
+  text-transform: uppercase;
+  gap: 0.5rem;
 }
 
 .ctaButton:hover {
-  background-color: #ffffff;
-  transform: translateY(-2px);
+  background: rgba(123, 44, 255, 0.05);
+  box-shadow: 0 0 25px rgba(123, 44, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.ctaIcon {
+  width: 1rem;
+  height: 1rem;
+  stroke-width: 2;
 }
 
 @media (max-width: 768px) {
@@ -81,6 +115,8 @@
 /* Dropdown Styles */
 .dropdown {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .dropdownIcon {
@@ -88,21 +124,22 @@
   height: 0.75rem;
   stroke-width: 2;
   margin-left: 0.25rem;
+  margin-top: 1px;
 }
 
 .dropdownMenu {
   position: absolute;
   top: 100%;
   left: 0;
-  background: rgba(10, 10, 10, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(5, 5, 16, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(123, 44, 255, 0.12);
   border-radius: var(--radius-md);
   padding: 0.5rem 0;
   min-width: 200px;
   z-index: 200;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
 .dropdownItem {
@@ -110,8 +147,8 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  font-size: 0.875rem;
-  color: rgba(245, 245, 247, 0.8);
+  font-size: 0.85rem;
+  color: rgba(245, 245, 247, 0.7);
   text-decoration: none;
   transition: all var(--transition-fast);
   text-transform: none;
@@ -119,8 +156,8 @@
 }
 
 .dropdownItem:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--color-off-white);
+  background: rgba(123, 44, 255, 0.08);
+  color: var(--text-white);
 }
 
 .dropdownItem .dropdownIcon {
