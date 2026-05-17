@@ -1,64 +1,227 @@
 "use client";
 
-import Button from "@/components/ui/Button";
 import { useActionState } from "react";
 import { submitForm } from "./actions";
+import styles from "./contact.module.css";
+import {
+  Send,
+  Briefcase,
+  User,
+  Phone,
+  Mail,
+  Wallet,
+  PenLine,
+  ArrowRight,
+  Lock,
+  Clock,
+  CheckCircle2,
+  ChevronDown,
+} from "lucide-react";
 
 export default function ContactForm() {
   const [state, formAction] = useActionState(submitForm, null);
 
   return (
-    <form action={formAction} id="serviceRequestForm" className="request-form" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-      <label style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-        Service
-        <select id="serviceSelect" name="service" required style={{ padding: "1rem", background: "rgba(255, 255, 255, 0.05)", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "8px", color: "white", outline: "none", appearance: "none" }}>
-          <option value="Videography" style={{ color: "black" }}>Videography</option>
-          <option value="Photography" style={{ color: "black" }}>Photography</option>
-          <option value="Website Design" style={{ color: "black" }}>Website Design</option>
-          <option value="Meta Ads" style={{ color: "black" }}>Meta Ads</option>
-          <option value="AI Services" style={{ color: "black" }}>AI Services</option>
-          <option value="Multiple Services" style={{ color: "black" }}>Multiple Services</option>
-        </select>
-      </label>
+    <div className={styles.formCard}>
+      {/* Header */}
+      <div className={styles.formHeader}>
+        <div className={styles.formHeaderIcon}>
+          <Send size={20} strokeWidth={1.5} />
+        </div>
+        <div className={styles.formHeaderText}>
+          <h3>Let&apos;s build something distinctive.</h3>
+          <p>Share your vision and we&apos;ll craft the right strategy.</p>
+        </div>
+      </div>
 
-      <label style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-        Name
-        <input type="text" name="name" placeholder="Your name" required style={{ padding: "1rem", background: "rgba(255, 255, 255, 0.05)", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "8px", color: "white", outline: "none" }} />
-      </label>
+      {/* Form */}
+      <form action={formAction} id="serviceRequestForm" className={styles.form}>
+        {/* Service */}
+        <div className={styles.fieldGroup}>
+          <label className={styles.fieldLabel} htmlFor="serviceSelect">
+            Service
+          </label>
+          <div className={styles.inputWrap}>
+            <span className={styles.inputIcon}>
+              <Briefcase size={16} strokeWidth={1.5} />
+            </span>
+            <select
+              id="serviceSelect"
+              name="service"
+              required
+              className={styles.selectField}
+            >
+              <option value="Videography">Videography</option>
+              <option value="Photography">Photography</option>
+              <option value="Website Design">Website Design</option>
+              <option value="Meta Ads">Meta Ads</option>
+              <option value="AI Services">AI Services</option>
+              <option value="Branding">Branding</option>
+              <option value="Social Media Management">
+                Social Media Management
+              </option>
+              <option value="Multiple Services">Multiple Services</option>
+            </select>
+            <span className={styles.selectArrow}>
+              <ChevronDown size={16} strokeWidth={1.5} />
+            </span>
+          </div>
+        </div>
 
-      <label style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-        Phone
-        <input type="tel" name="phone" placeholder="Phone number" required style={{ padding: "1rem", background: "rgba(255, 255, 255, 0.05)", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "8px", color: "white", outline: "none" }} />
-      </label>
+        {/* Name + Phone */}
+        <div className={styles.formRow}>
+          <div className={styles.fieldGroup}>
+            <label className={styles.fieldLabel} htmlFor="nameInput">
+              Name
+            </label>
+            <div className={styles.inputWrap}>
+              <span className={styles.inputIcon}>
+                <User size={16} strokeWidth={1.5} />
+              </span>
+              <input
+                type="text"
+                id="nameInput"
+                name="name"
+                placeholder="Your name"
+                required
+                className={styles.inputField}
+              />
+            </div>
+          </div>
+          <div className={styles.fieldGroup}>
+            <label className={styles.fieldLabel} htmlFor="phoneInput">
+              Phone
+            </label>
+            <div className={styles.inputWrap}>
+              <span className={styles.inputIcon}>
+                <Phone size={16} strokeWidth={1.5} />
+              </span>
+              <input
+                type="tel"
+                id="phoneInput"
+                name="phone"
+                placeholder="Phone number"
+                required
+                className={styles.inputField}
+              />
+            </div>
+          </div>
+        </div>
 
-      <label style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-        Email
-        <input type="email" name="email" placeholder="Email address" required style={{ padding: "1rem", background: "rgba(255, 255, 255, 0.05)", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "8px", color: "white", outline: "none" }} />
-      </label>
+        {/* Email */}
+        <div className={styles.fieldGroup}>
+          <label className={styles.fieldLabel} htmlFor="emailInput">
+            Email
+          </label>
+          <div className={styles.inputWrap}>
+            <span className={styles.inputIcon}>
+              <Mail size={16} strokeWidth={1.5} />
+            </span>
+            <input
+              type="email"
+              id="emailInput"
+              name="email"
+              placeholder="Email address"
+              required
+              className={styles.inputField}
+            />
+          </div>
+        </div>
 
-      <label style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-        Budget Range
-        <select name="budget" required style={{ padding: "1rem", background: "rgba(255, 255, 255, 0.05)", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "8px", color: "white", outline: "none", appearance: "none" }}>
-          <option value="under_5k" style={{ color: "black" }}>Under AED 5,000</option>
-          <option value="5k_15k" style={{ color: "black" }}>AED 5,000 - AED 15,000</option>
-          <option value="15k_50k" style={{ color: "black" }}>AED 15,000 - AED 50,000</option>
-          <option value="50k_plus" style={{ color: "black" }}>AED 50,000+</option>
-        </select>
-      </label>
+        {/* Budget Range */}
+        <div className={styles.fieldGroup}>
+          <label className={styles.fieldLabel} htmlFor="budgetSelect">
+            Budget Range
+          </label>
+          <div className={styles.inputWrap}>
+            <span className={styles.inputIcon}>
+              <Wallet size={16} strokeWidth={1.5} />
+            </span>
+            <select
+              id="budgetSelect"
+              name="budget"
+              required
+              className={styles.selectField}
+            >
+              <option value="under_5k">Under AED 5,000</option>
+              <option value="5k_15k">AED 5,000 - AED 15,000</option>
+              <option value="15k_50k">AED 15,000 - AED 50,000</option>
+              <option value="50k_plus">AED 50,000+</option>
+            </select>
+            <span className={styles.selectArrow}>
+              <ChevronDown size={16} strokeWidth={1.5} />
+            </span>
+          </div>
+        </div>
 
-      <label style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-        Project brief
-        <textarea name="project" rows={5} placeholder="Tell us about the scope, goals, and timeline." required style={{ padding: "1rem", background: "rgba(255, 255, 255, 0.05)", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "8px", color: "white", outline: "none", resize: "vertical" }}></textarea>
-      </label>
+        {/* Project Brief */}
+        <div className={styles.fieldGroup}>
+          <label className={styles.fieldLabel} htmlFor="projectBrief">
+            Project brief
+          </label>
+          <div className={styles.inputWrap}>
+            <span
+              className={styles.inputIcon}
+              style={{ top: "0.875rem", alignItems: "flex-start" }}
+            >
+              <PenLine size={16} strokeWidth={1.5} />
+            </span>
+            <textarea
+              id="projectBrief"
+              name="project"
+              rows={4}
+              placeholder="Tell us about the scope, goals, and timeline."
+              required
+              className={`${styles.textareaField}`}
+            />
+          </div>
+        </div>
 
-      <Button type="submit" variant="primary" showIcon className="w-full">
-        Submit Request
-      </Button>
-      {state?.message && (
-        <p id="requestMessage" className="request-message" style={{ marginTop: "1rem", color: state.success ? "var(--color-lilac)" : "red", fontSize: "0.875rem" }}>
-          {state.message}
-        </p>
-      )}
-    </form>
+        {/* Submit */}
+        <button type="submit" className={styles.submitBtn}>
+          SUBMIT REQUEST
+          <ArrowRight size={16} className={styles.submitIcon} />
+        </button>
+
+        {/* Message */}
+        {state?.message && (
+          <p
+            className={`${styles.formMessage} ${
+              state.success ? styles.formMessageSuccess : styles.formMessageError
+            }`}
+          >
+            {state.message}
+          </p>
+        )}
+      </form>
+
+      {/* Trust Badges */}
+      <div className={styles.trustBadges}>
+        <div className={styles.trustBadge}>
+          <Lock size={14} className={styles.trustBadgeIcon} />
+          <span>
+            Your information is
+            <br />
+            100% secure
+          </span>
+        </div>
+        <div className={styles.trustBadge}>
+          <Clock size={14} className={styles.trustBadgeIcon} />
+          <span>
+            We typically respond
+            <br />
+            within 24 hours
+          </span>
+        </div>
+        <div className={styles.trustBadge}>
+          <CheckCircle2 size={14} className={styles.trustBadgeIcon} />
+          <span>
+            No commitment,
+            <br />
+            just expert advice
+          </span>
+        </div>
+      </div>
+    </div>
   );
 }

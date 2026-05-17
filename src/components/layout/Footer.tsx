@@ -30,7 +30,7 @@ export default function Footer() {
                 <EnvelopeIcon className={styles.icon} />
                 Email
               </a>
-              <a href="https://instagram.com/neagram" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/reel/DKZ1T80v7yJ/?igsh=MXBldzNrYjlvc292cg==" target="_blank" rel="noopener noreferrer">
                 <CameraIcon className={styles.icon} />
                 Instagram
               </a>

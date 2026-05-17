@@ -15,6 +15,8 @@ import {
   Compass,
   TrendingUp,
   ShieldCheck,
+  Sparkles,
+  User,
 } from "lucide-react";
 
 export default function Home() {
@@ -96,27 +98,85 @@ export default function Home() {
       <section className={`section ${styles.manifesto}`}>
         <div className={styles.manifestoGlow} />
         <div className="container">
-          <ScrollReveal>
-            <h2 className="heading-2">
-              MARKETING NEEDS MORE{" "}
-              <span className="text-gradient">PERSONALITY</span>
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal direction="up" delay={0.2}>
-            <div className={styles.manifestoContent}>
-              <p className="text-lg">
-                Our mission is to add authentic personality to brands and help
-                them grow.
-              </p>
-              <p>
-                Neagram Studio is a creative marketing agency focused on
-                branding, performance and storytelling that drives measurable
-                results. We believe businesses don&apos;t need another faceless
-                agency. They need a partner that combines transparency,
-                strategic depth, creativity and unwavering support.
-              </p>
+          <div className={styles.manifestoGrid}>
+            {/* Left Column — Text */}
+            <div className={styles.manifestoLeft}>
+              <ScrollReveal>
+                <p className={styles.sectionLabel}>WHO WE ARE</p>
+                <h2 className="heading-2">
+                  MARKETING NEEDS MORE{" "}
+                  <span className="text-gradient">PERSONALITY.</span>
+                </h2>
+                <div className={styles.manifestoDivider} />
+              </ScrollReveal>
+              <ScrollReveal direction="up" delay={0.2}>
+                <div className={styles.manifestoContent}>
+                  <p className="text-lg">
+                    Our mission is to add authentic personality to brands and
+                    help them grow.
+                  </p>
+                  <p>
+                    Neagram Studio is a creative marketing agency focused on
+                    branding, performance and storytelling that drives measurable
+                    results. We believe businesses don&apos;t need another
+                    faceless agency. They need a partner that combines
+                    transparency, strategic depth, creativity and unwavering
+                    support.
+                  </p>
+                </div>
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
+
+            {/* Right Column — Values Visual */}
+            <ScrollReveal direction="right" delay={0.3}>
+              <div className={styles.manifestoVisual}>
+                <Image
+                  src="/images/values-bg.jpg"
+                  alt="Neagram Studio core values — Clear Vision, Strategy, Value, Growth, Client Focus, Integrity, Innovation, Excellence"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 55vw"
+                  className={styles.manifestoVisualImg}
+                  priority
+                />
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Bottom — Feature Cards */}
+          <div className={styles.manifestoFeatures}>
+            {[
+              {
+                icon: Target,
+                title: "Strategic Depth",
+                desc: "Data-driven strategies that create real impact.",
+              },
+              {
+                icon: Sparkles,
+                title: "Creative Excellence",
+                desc: "Ideas that connect, inspire and convert.",
+              },
+              {
+                icon: ShieldCheck,
+                title: "Transparency",
+                desc: "Clear communication and honest partnership.",
+              },
+              {
+                icon: User,
+                title: "Unwavering Support",
+                desc: "A partner that grows with you.",
+              },
+            ].map((feature, i) => (
+              <ScrollReveal key={i} delay={0.3 + i * 0.1} direction="up">
+                <div className={styles.manifestoFeature}>
+                  <div className={styles.manifestoFeatureIcon}>
+                    <feature.icon size={28} strokeWidth={1.5} />
+                  </div>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.desc}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 

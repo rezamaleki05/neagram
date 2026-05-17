@@ -1,16 +1,87 @@
+import Image from "next/image";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 import ContactForm from "./Form";
+import styles from "./contact.module.css";
+import { Target, Sparkles, Eye } from "lucide-react";
 
 export default function Contact() {
   return (
-    <div className="container section" style={{ paddingTop: "120px" }}>
-      <div className="request-content" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }}>
-        <div className="request-copy">
-          <span className="eyebrow" style={{ fontSize: "0.875rem", textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--color-lilac)", marginBottom: "1rem", display: "block" }}>Request a Service</span>
-          <h1 className="heading-2" style={{ marginBottom: "1.5rem" }}>Tell us about your project.</h1>
-          <p style={{ color: "rgba(245, 245, 247, 0.7)", fontSize: "1.125rem", lineHeight: "1.6" }}>Select a service, share your vision, and our team will follow up with a tailored strategy.</p>
-        </div>
+    <div className={styles.contactPage}>
+      {/* Background */}
+      <div className={styles.contactBg}>
+        <Image
+          src="/images/Contact us.jpg"
+          alt=""
+          fill
+          className={styles.contactBgImg}
+          priority
+        />
+        <div className={styles.contactBgOverlay} />
+      </div>
 
-        <ContactForm />
+      {/* Content */}
+      <div className={`container ${styles.contactContainer}`}>
+        <div className={styles.contactGrid}>
+          {/* Left Column */}
+          <div className={styles.contactLeft}>
+            <ScrollReveal>
+              <div className={styles.contactLabel}>
+                REQUEST A SERVICE
+                <span className={styles.contactLabelLine} />
+              </div>
+            </ScrollReveal>
+            <ScrollReveal direction="up" delay={0.15}>
+              <h1 className={styles.contactHeading}>
+                Tell us about
+                <br />
+                your{" "}
+                <span className={styles.contactHeadingAccent}>project.</span>
+              </h1>
+            </ScrollReveal>
+            <ScrollReveal direction="up" delay={0.25}>
+              <p className={styles.contactSubtitle}>
+                We craft cinematic branding, performance marketing and digital
+                experiences designed to make brands unforgettable.
+              </p>
+            </ScrollReveal>
+
+            {/* Features */}
+            <ScrollReveal direction="up" delay={0.35}>
+              <div className={styles.contactFeatures}>
+                {[
+                  {
+                    icon: Target,
+                    title: "Strategy First",
+                    desc: "Data-driven strategies built for real impact.",
+                  },
+                  {
+                    icon: Sparkles,
+                    title: "Creative Excellence",
+                    desc: "Ideas that connect, inspire and convert.",
+                  },
+                  {
+                    icon: Eye,
+                    title: "Transparent Process",
+                    desc: "Clear communication and honest partnership.",
+                  },
+                ].map((feature, i) => (
+                  <div key={i} className={styles.contactFeatureItem}>
+                    <div className={styles.contactFeatureIcon}>
+                      <feature.icon size={24} strokeWidth={1.5} />
+                    </div>
+                    <h4>{feature.title}</h4>
+                    <p>{feature.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Right Column — Form */}
+          <ScrollReveal direction="up" delay={0.2}>
+            <ContactForm />
+          </ScrollReveal>
+        </div>
       </div>
     </div>
   );

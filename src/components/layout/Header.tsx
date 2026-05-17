@@ -62,8 +62,8 @@ export default function Header() {
 
         </nav>
         <div className={styles.actions}>
-          <Link href="/contact" className={styles.ctaButton}>
-            Contact
+          <Link href="/contact" className={`${styles.ctaButton} ${pathname?.startsWith('/contact') ? styles.ctaActive : ''}`}>
+            Contact us
             <ArrowRightIcon className={styles.ctaIcon} />
           </Link>
         </div>
