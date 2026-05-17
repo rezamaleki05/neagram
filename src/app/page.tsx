@@ -1,9 +1,10 @@
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import AnimatedTimeline from "@/components/animations/AnimatedTimeline";
 import Button from "@/components/ui/Button";
 import styles from "./page.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Quote } from "lucide-react";
+import { ArrowRight, Quote, Star, ShoppingBag, HomeIcon } from "lucide-react";
 import {
   BarChart3,
   BrainCircuit,
@@ -391,9 +392,8 @@ export default function Home() {
               <span className="text-gradient">GROWTH</span>
             </h2>
           </ScrollReveal>
-          <div className={styles.timeline}>
-            <div className={styles.timelineLine} />
-            {[
+          <AnimatedTimeline 
+            steps={[
               {
                 num: "01",
                 title: "Discovery",
@@ -419,19 +419,14 @@ export default function Home() {
                 title: "Growth",
                 desc: "Sustainable results over time.",
               },
-            ].map((step, i) => (
-              <ScrollReveal key={i} delay={i * 0.1}>
-                <div className={styles.timelineItem}>
-                  <div className={styles.timelineNum}>{step.num}</div>
-                  <div className={styles.timelineDot} />
-                  <div className={styles.timelineContent}>
-                    <h3>{step.title}</h3>
-                    <p>{step.desc}</p>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+            ]}
+            className={styles.timeline}
+            lineClassName={styles.timelineLine}
+            itemClassName={styles.timelineItem}
+            numClassName={styles.timelineNum}
+            dotClassName={styles.timelineDot}
+            contentClassName={styles.timelineContent}
+          />
         </div>
       </section>
 
@@ -439,12 +434,26 @@ export default function Home() {
       <section className={`section ${styles.reviews}`}>
         <div className="container">
           <ScrollReveal>
-            <p className={styles.sectionLabel}>TESTIMONIALS</p>
-            <h2 className="heading-2">
-              TRUSTED PARTNERSHIPS
-              <br />
-              PROVEN <span className="text-gradient">RESULTS</span>
-            </h2>
+            <div className={styles.reviewsHeaderWrapper}>
+              <div>
+                <p className={styles.sectionLabel}>TESTIMONIALS</p>
+                <h2 className={`heading-2 ${styles.reviewsTitle}`}>
+                  TRUSTED PARTNERSHIPS
+                  <br />
+                  PROVEN <span className="text-gradient">RESULTS</span>
+                </h2>
+                <p className={styles.reviewsSubtitle}>
+                  We don&apos;t just deliver services — we build lasting partnerships
+                  <br />
+                  that drive measurable growth and real impact.
+                </p>
+              </div>
+              <div className={styles.reviewsHeaderAction}>
+                <Link href="/work" className={styles.viewAllLink}>
+                  VIEW ALL TESTIMONIALS <ArrowRight size={14} />
+                </Link>
+              </div>
+            </div>
           </ScrollReveal>
           <div className={styles.reviewCards}>
             {[
@@ -454,6 +463,8 @@ export default function Home() {
                 name: "Dr. A. Johnson",
                 company: "Pearl Clinic",
                 color: "#7B2CFF",
+                avatarType: "text",
+                avatarContent: "PEARL\nCLINIC",
               },
               {
                 quote:
@@ -461,6 +472,8 @@ export default function Home() {
                 name: "M. Laurent",
                 company: "Beauty Corner",
                 color: "#A970FF",
+                avatarType: "text",
+                avatarContent: "BC",
               },
               {
                 quote:
@@ -468,6 +481,8 @@ export default function Home() {
                 name: "T. Al-rad",
                 company: "E-commerce Brand",
                 color: "#7B2CFF",
+                avatarType: "icon",
+                avatarContent: ShoppingBag,
               },
               {
                 quote:
@@ -475,6 +490,8 @@ export default function Home() {
                 name: "R. Williams",
                 company: "Real Estate Agency",
                 color: "#A970FF",
+                avatarType: "icon",
+                avatarContent: HomeIcon,
               },
             ].map((review, i) => (
               <ScrollReveal key={i} delay={i * 0.12}>
@@ -483,19 +500,53 @@ export default function Home() {
                     className={styles.quoteIcon}
                     style={{ color: review.color }}
                   >
-                    <Quote size={24} />
+                    <Quote size={28} fill="currentColor" stroke="none" />
                   </div>
                   <p className={styles.quote}>{review.quote}</p>
-                  <div className={styles.reviewAuthor}>
-                    <span className={styles.authorName}>{review.name}</span>
-                    <span className={styles.authorCompany}>
-                      {review.company}
-                    </span>
+                  
+                  <div className={styles.reviewAuthorBlock}>
+                    <div className={styles.reviewAvatar}>
+                      {review.avatarType === "text" ? (
+                        <span className={styles.avatarText}>{review.avatarContent as string}</span>
+                      ) : (
+                        <review.avatarContent size={18} />
+                      )}
+                    </div>
+                    <div className={styles.reviewAuthorInfo}>
+                      <span className={styles.authorName}>{review.name}</span>
+                      <span className={styles.authorCompany}>
+                        {review.company}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className={styles.stars}>
+                    {[...Array(5)].map((_, idx) => (
+                      <Star key={idx} size={14} fill={review.color} color={review.color} />
+                    ))}
                   </div>
                 </div>
               </ScrollReveal>
             ))}
           </div>
+
+          {/* Trusted Partners Logos (Bottom of Testimonials) */}
+          <ScrollReveal delay={0.4}>
+            <div className={styles.partnerLogos}>
+              {[
+                "Monroe",
+                "Dubai Smile",
+                "Ladora Polyclinic",
+                "Royal Dental",
+                "Prime Health",
+                "Papa Kanafa",
+              ].map((client, i) => (
+                <span key={i} className={styles.partnerLogo}>
+                  {client}
+                </span>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

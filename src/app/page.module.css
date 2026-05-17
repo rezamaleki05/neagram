@@ -559,52 +559,173 @@
    ========================================================= */
 .reviews {
   position: relative;
+  overflow: hidden;
+  background-image: url('/images/testimonials-bg.png');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+
+.reviewsHeaderWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.reviewsTitle {
+  margin-bottom: 1rem;
+}
+
+.reviewsSubtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.reviewsHeaderAction {
+  margin-bottom: 0.5rem;
+}
+
+.viewAllLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-white);
+  padding: 0.75rem 1.25rem;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.viewAllLink:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(123, 44, 255, 0.5);
 }
 
 .reviewCards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
-  margin-top: var(--spacing-lg);
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+}
+
+@property --review-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes spinReviewGlow {
+  0% { --review-angle: 0deg; }
+  100% { --review-angle: 360deg; }
 }
 
 .reviewCard {
+  background: 
+    linear-gradient(rgba(8, 11, 22, 0.9), rgba(8, 11, 22, 0.9)) padding-box,
+    conic-gradient(
+      from var(--review-angle),
+      transparent 20%,
+      rgba(169, 112, 255, 0.3) 40%,
+      var(--color-violet) 50%,
+      var(--color-purple) 60%,
+      rgba(123, 44, 255, 0.3) 80%,
+      transparent 100%
+    ) border-box;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-md);
   padding: 1.75rem;
-  background: rgba(8, 11, 22, 0.5);
+  position: relative;
+  overflow: visible;
+  animation: spinReviewGlow 8s linear infinite;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reviewCard::after {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  background: conic-gradient(
+    from var(--review-angle),
+    transparent 20%,
+    rgba(169, 112, 255, 0.4) 40%,
+    var(--color-violet) 50%,
+    var(--color-purple) 60%,
+    rgba(123, 44, 255, 0.4) 80%,
+    transparent 100%
+  );
+  border-radius: var(--radius-md);
+  z-index: -1;
+  filter: blur(12px);
+  opacity: 0.3;
+  animation: spinReviewGlow 8s linear infinite;
+  pointer-events: none;
 }
 
 .reviewCard:hover {
-  border-color: rgba(123, 44, 255, 0.25);
-  box-shadow: 0 0 40px rgba(123, 44, 255, 0.06);
   transform: translateY(-4px);
 }
 
-.quoteIcon {
+.reviewCard:hover::after {
   opacity: 0.6;
 }
 
+.quoteIcon {
+  opacity: 0.9;
+  margin-bottom: -0.25rem;
+}
+
 .quote {
-  font-size: 0.95rem;
-  font-style: italic;
+  font-size: 0.9rem;
   line-height: 1.7;
-  color: rgba(245, 245, 247, 0.85);
+  color: rgba(245, 245, 247, 0.9);
   flex: 1;
 }
 
-.reviewAuthor {
+.reviewAuthorBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.reviewAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-white);
+}
+
+.avatarText {
+  font-size: 0.5rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+}
+
+.reviewAuthorInfo {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--border-subtle);
+  gap: 0.1rem;
 }
 
 .authorName {
@@ -616,6 +737,36 @@
 .authorCompany {
   font-size: 0.75rem;
   color: var(--text-muted);
+}
+
+.stars {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.partnerLogos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 2rem;
+}
+
+.partnerLogo {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.partnerLogo:hover {
+  color: var(--text-white);
 }
 
 /* =========================================================

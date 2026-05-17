@@ -1,85 +1,100 @@
 "use client";
 
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Target, Film, BarChart2, Code, Sparkles } from "lucide-react";
 import Button from "@/components/ui/Button";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import styles from "./page.module.css";
 
 const servicesData = [
   {
-    id: "photography",
-    title: "High-End Photography",
-    description: "We capture the essence of your brand through stunning, editorial-quality photography. Whether it's fashion, product, or architectural photography, our shots are designed to leave a lasting impression and elevate your brand's visual identity.",
-    image: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2070&auto=format&fit=crop",
+    id: "branding",
+    icon: Target,
+    title: "BRANDING",
+    description: "We create distinctive identities that build trust and leave a lasting impression.",
+    link: "/services/branding"
   },
   {
     id: "videography",
-    title: "Cinematic Videography",
-    description: "Tell your story in motion. Our cinematic videography services bring your vision to life with industry-grade equipment, dramatic lighting, and masterful storytelling. We produce commercials, brand documentaries, and engaging social content.",
-    image: "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=2071&auto=format&fit=crop",
+    icon: Film,
+    title: "VIDEOGRAPHY",
+    description: "Cinematic storytelling that captures attention and drives engagement.",
+    link: "/services/videography"
   },
   {
-    id: "website",
-    title: "Premium Website Design",
-    description: "Your digital storefront needs to be flawless. We build lightning-fast, ultra-modern websites with immersive animations and intuitive user experiences. We don't just build websites; we engineer digital destinations that convert.",
-    image: "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?q=80&w=2070&auto=format&fit=crop",
+    id: "digital-marketing",
+    icon: BarChart2,
+    title: "DIGITAL MARKETING",
+    description: "Data-driven strategies that grow your brand and maximize results.",
+    link: "/services/digital-marketing"
   },
   {
-    id: "ai",
-    title: "AI Innovations",
-    description: "Leverage the power of tomorrow, today. From automated workflows to generative AI assets, we integrate cutting-edge artificial intelligence into your business processes and creative campaigns to keep you steps ahead of the competition.",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop",
+    id: "web-design",
+    icon: Code,
+    title: "WEB DESIGN",
+    description: "High-converting websites designed to elevate your brand and generate leads.",
+    link: "/services/web-design"
+  },
+  {
+    id: "ai-solutions",
+    icon: Sparkles,
+    title: "AI SOLUTIONS",
+    description: "Smart automation and AI tools that streamline processes and scale growth.",
+    link: "/services/ai-solutions"
   },
 ];
 
 export default function ServicesPage() {
   return (
     <main className={styles.servicesPage}>
-      {/* Hero Section */}
-      <section className={styles.hero}>
-        <ScrollReveal>
-          <h1 className={styles.title} style={{ fontWeight: 500 }}>
-            Everything A Business Needs<br />
-            <strong style={{ fontWeight: 800 }}>From A to Z</strong>
-          </h1>
-          <p className={styles.subtitle}>
-            Our services are tailored for scale, growth, and building authentic connections.
-          </p>
-        </ScrollReveal>
-      </section>
+      {/* Background Image Layer */}
+      <div className={styles.heroBackground}></div>
+      <div className={styles.heroOverlay}></div>
 
-      {/* Services List */}
-      <section className={styles.servicesList}>
-        {servicesData.map((service, index) => (
-          <ScrollReveal
-            key={service.id}
-            direction={index % 2 === 0 ? "right" : "left"}
-            delay={0.2}
-          >
-            <div className={styles.serviceItem}>
-              <div className={styles.imageWrapper}>
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className={styles.serviceImage}
-                />
-              </div>
-              <div className={styles.textContent}>
-                <h2 className={styles.serviceTitle}>{service.title}</h2>
-                <p className={styles.serviceDescription}>{service.description}</p>
-                <Button
-                  href="/contact"
-                  variant="primary"
-                  showIcon
-                >
-                  Order Service
-                </Button>
-              </div>
+      {/* Hero Content Layer */}
+      <div className={`container ${styles.heroContainer}`}>
+        <ScrollReveal>
+          <div className={styles.heroContent}>
+            <p className={styles.sectionLabel}>WHAT WE DO</p>
+            <h1 className={styles.title}>
+              STRATEGY.<br />
+              CREATIVE.<br />
+              IMPACT.
+            </h1>
+            <p className={styles.subtitle}>
+              We combine strategy, creativity, and technology<br />
+              to build brands that stand out and convert.
+            </p>
+            <div className={styles.action}>
+              <Button href="#explore" variant="outline" showIcon>
+                EXPLORE SERVICES
+              </Button>
             </div>
-          </ScrollReveal>
-        ))}
-      </section>
+          </div>
+        </ScrollReveal>
+
+        {/* Services Cards Layer */}
+        <div className={styles.servicesGridWrapper}>
+          <div className={styles.servicesGrid}>
+            {servicesData.map((service, index) => (
+              <ScrollReveal key={service.id} delay={index * 0.1}>
+                <div className={styles.serviceCard}>
+                  <div className={styles.iconWrapper}>
+                    <service.icon size={24} />
+                  </div>
+                  <h3 className={styles.serviceTitle}>{service.title}</h3>
+                  <p className={styles.serviceDescription}>
+                    {service.description}
+                  </p>
+                  <Link href={service.link} className={styles.viewLink}>
+                    VIEW SERVICE <ArrowRight size={14} />
+                  </Link>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </div>
     </main>
   );
 }
